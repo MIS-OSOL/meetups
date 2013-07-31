@@ -1,0 +1,66 @@
+<html>
+
+<form>
+size:<input type="text" value="4" id="k"> <br>
+
+<input type="button" value="view" onclick="view()" id="button">
+
+</form>
+
+</html>
+
+<script>
+
+function view(){
+
+  var table = document.createElement('table');
+  var k = document.getElementById("k").value;
+  var size = 2 * k + 1;
+
+  //create a table
+  for(i=0; i<size; i++){
+    table.insertRow();
+    for(j=0; j<size; j++){
+     table.rows[i].insertCell();
+    }
+  }
+
+  // set star
+  for(i=0; i<size; i++){
+    
+    for(j=0; j<size; j++){
+      
+     // bottom or top
+     if(i == 0 || i == size -1){
+       if(j == k){
+        table.rows[i].cells[j].innerHTML='*';
+       }
+     }else if(0 < i && i <= k){
+      // upper half 
+        if (j == k -i || j == 2*k - (k - i)){
+           table.rows[i].cells[j].innerHTML='*';
+        }
+     }else if(k < j || j < 2*k){
+      //lower half
+       if(j == i - k || j == 2*k - (i -k)){
+          table.rows[i].cells[j].innerHTML='*';
+        }
+     }
+    }
+   
+  }
+  
+  var button = document.getElementById("button");
+  var node = button.parentNode
+  
+  //node.removeChild(table); 
+  node.appendChild(table); // view in html
+  
+   
+
+}
+
+ 
+
+</script>
+
